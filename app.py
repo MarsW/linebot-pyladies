@@ -47,6 +47,12 @@ def has_keyword(msg,word_list):
     print(find)
     return find
 
+def get_random_choice(choice):
+    import random
+    index = random.randint(0,len(choice)-1)
+    print(choice[index])
+    return(choice[index])
+
 @handler.add(MessageEvent, message=TextMessage)  # default
 def handle_text_message(event):                  # default
     msg = event.message.text #message from user
@@ -55,19 +61,13 @@ def handle_text_message(event):                  # default
     reply = ""
     # msg=input("msg=")         #input()是在terminal/cmd鍵盤輸入的，這裡是用line傳進來的
     chg_word = ["想吃飯","不想吃這個","換一個"]
+    choice = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
 
     if has_keyword(msg, chg_word): 
-        import random
-        choice = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
-        index = random.randint(0,len(choice)-1)
-        print(choice[index])
-        print("建議你可以吃"+choice[index])   #print會印在Heroku log中，不會在line出現
-        reply = "建議你可以吃"+choice[index]
+        reply = "建議你可以吃"+get_random_choice(choice)
     elif msg=="我很滿意你的服務":
-        print("希望你有個愉快的一餐")
         reply = "希望你有個愉快的一餐"
     else:
-        print("我聽不懂你在說什麼！")
         reply = "我聽不懂你在說什麼！"
 
     line_bot_api.reply_message(
