@@ -44,9 +44,21 @@ def handle_text_message(event):                  # default
     msg = event.message.text #message from user
 
     # 針對使用者各種訊息的回覆 Start =========
+    reply = ""
+    # msg=input("msg=")         #input()是在terminal/cmd鍵盤輸入的，這裡是用line傳進來的
+    if msg=="想吃飯" or msg=="不想吃這個" or msg=="換一個":
+        print("建議你可以吃??")   #print會印在Heroku log中，不會在line出現
+        reply = "建議你可以吃??"
+    elif msg=="我很滿意你的服務":
+        print("希望你有個愉快的一餐")
+        reply = "希望你有個愉快的一餐"
+    else:
+        print("我聽不懂你在說什麼！")
+        reply = "我聽不懂你在說什麼！"
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=msg))
+        TextSendMessage(text=reply))
 
     # 針對使用者各種訊息的回覆 End =========
 
