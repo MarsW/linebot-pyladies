@@ -46,9 +46,14 @@ def handle_text_message(event):                  # default
     # 針對使用者各種訊息的回覆 Start =========
     reply = ""
     # msg=input("msg=")         #input()是在terminal/cmd鍵盤輸入的，這裡是用line傳進來的
-    if msg=="想吃飯" or msg=="不想吃這個" or msg=="換一個":
-        print("建議你可以吃??")   #print會印在Heroku log中，不會在line出現
-        reply = "建議你可以吃??"
+    chg_word = ["想吃飯","不想吃這個","換一個"]
+    if msg in chg_word:
+        import random
+        choice = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
+        index = random.randint(0,len(choice)-1)
+        print(choice[index])
+        print("建議你可以吃"+choice[index])   #print會印在Heroku log中，不會在line出現
+        reply = "建議你可以吃"+choice[index]
     elif msg=="我很滿意你的服務":
         print("希望你有個愉快的一餐")
         reply = "希望你有個愉快的一餐"
