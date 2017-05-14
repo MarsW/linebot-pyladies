@@ -39,6 +39,14 @@ def callback():
     return 'OK'
 
 # ================= 機器人區塊 Start =================
+def has_keyword(msg,word_list):
+    find = False
+    for i in word_list:
+        if i in msg:
+            find = True
+    print(find)
+    return find
+
 @handler.add(MessageEvent, message=TextMessage)  # default
 def handle_text_message(event):                  # default
     msg = event.message.text #message from user
@@ -47,12 +55,8 @@ def handle_text_message(event):                  # default
     reply = ""
     # msg=input("msg=")         #input()是在terminal/cmd鍵盤輸入的，這裡是用line傳進來的
     chg_word = ["想吃飯","不想吃這個","換一個"]
-    find = False
-    for i in chg_word:
-        if i in msg:
-            find = True
-    print(find)
-    if find:
+
+    if has_keyword(msg, chg_word): 
         import random
         choice = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
         index = random.randint(0,len(choice)-1)
