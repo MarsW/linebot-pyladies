@@ -60,12 +60,17 @@ def handle_text_message(event):                  # default
     # 針對使用者各種訊息的回覆 Start =========
     reply = ""
     # msg=input("msg=")         #input()是在terminal/cmd鍵盤輸入的，這裡是用line傳進來的
-    chg_word = ["想吃飯","不想吃這個","換一個"]
-    choice = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
+    chg_word1 = ["想吃飯","不想吃這個","換一個"]
+    chg_word2 = ["公司","大家"]
+    end_word = ["滿意","謝謝你"]
+    choice1 = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
+    choice2 = ["火鍋", "熱炒", "燒烤"]
 
-    if has_keyword(msg, chg_word): 
-        reply = "建議你可以吃"+get_random_choice(choice)
-    elif msg=="我很滿意你的服務":
+    if has_keyword(msg, chg_word1): 
+        reply = "建議你可以吃"+get_random_choice(choice1)
+    elif has_keyword(msg, chg_word2): 
+        reply = "建議你可以吃"+get_random_choice(choice2)
+    elif has_keyword(msg, end_word):
         reply = "希望你有個愉快的一餐"
     else:
         reply = "我聽不懂你在說什麼！"
