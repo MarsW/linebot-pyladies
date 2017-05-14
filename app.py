@@ -47,7 +47,12 @@ def handle_text_message(event):                  # default
     reply = ""
     # msg=input("msg=")         #input()是在terminal/cmd鍵盤輸入的，這裡是用line傳進來的
     chg_word = ["想吃飯","不想吃這個","換一個"]
-    if msg in chg_word:
+    find = False
+    for i in chg_word:
+        if i in msg:
+            find = True
+    print(find)
+    if find:
         import random
         choice = ["麥當勞", "7-11", "烏龍麵", "自助餐"]
         index = random.randint(0,len(choice)-1)
